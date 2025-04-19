@@ -42,7 +42,7 @@ module.exports.addCourse = async (req , res)=>{
     let info = req.body;
     let imageURL = req.file.path;
     let imageFileName = req.file.filename;
-    let 
+    let {ins_id} = req.params
     try {
         let ack = await Course.create({
             coverImage: {
@@ -54,6 +54,9 @@ module.exports.addCourse = async (req , res)=>{
             enrolledStudents:[],
             videos:[],
         });
+        let ins = await Instructor.findById(ins_id);
+        ins.cources.push(ack._id);
+        await ins.save();
     } catch (error) {
         res.status(500).json({ error: "An error occurred during insertion." });
         return;
