@@ -100,8 +100,11 @@ module.exports.enrolled = async(req , res)=>{
 
 
 
-// module.exports.allCourses = async(req , res)=>{
-//     try{
-//         let alldata = await Course
-//     }
-// }
+module.exports.allCourses = async(req , res)=>{
+    try{
+        let alldata = await Course.find({}).populate('videos')
+        res.status(200).json(alldata)
+    } catch(error){
+        res.status(500).json({error : "something went wrong........"})
+    }
+}
