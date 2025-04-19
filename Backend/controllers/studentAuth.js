@@ -44,7 +44,7 @@ module.exports.login = async (req , res)=>{
         return res
         .status(200)
         .cookie("accessToken" , accessToken , options)
-        .json({success : "Logged IN"});
+        .json({role : "Student"});
 
     } catch(error){
         console.log(error);       

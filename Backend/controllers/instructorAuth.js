@@ -3,21 +3,7 @@ const Instructor = require('../models/Instructor.js')
 
 
 
-// module.exports.signup = async (req, res) => {
-//     const { username , email, password } = req.body;
-//     //check if fields are empty or not
-//     if ([username, email, password].some((field) => !field?.trim())) {
-//         return res.status(401).json({ error: "All fields are required" });
-//     }    
-//     try {
-//         const newUser = new User({ username, email , password });
-//         const user = await User.create(newUser);
-//         res.status(200).json({ success: "Signed up successfully" });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ error: "Failed to sign up" });
-//     }
-// }
+
 
 module.exports.login = async (req , res)=>{
     let accessToken = req.cookies.accessToken;
@@ -44,7 +30,7 @@ module.exports.login = async (req , res)=>{
         return res
         .status(200)
         .cookie("accessToken" , accessToken , options)
-        .json({success : "Logged IN"});
+        .json({role : "Instructor"});
 
     } catch(error){
         console.log(error);       
