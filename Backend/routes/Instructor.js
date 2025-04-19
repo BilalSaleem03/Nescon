@@ -14,6 +14,10 @@ route.post("/add-course/:id" , upload.single("coverImage") , instructorControlle
 route.post("/signup"  , instructorController.signup)
 route.post("/add-course-video/:course_id" , uploadVid.single("video") , instructorController.addVideoToCourse)
 
+route.get("/all-courses" , instructorController.allCourses)
+
+route.get("/all-courses/:course-id" , instructorController.oneCourse)
+
 
 
 

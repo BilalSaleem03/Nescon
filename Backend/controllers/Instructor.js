@@ -88,3 +88,41 @@ module.exports.addVideoToCourse = async (req , res)=>{
         return;
     }
 }
+
+module.exports.allCourses = async(req , res)=>{
+    try{
+        let accessToken = req.cookies.accessToken;
+        if(!accessToken){
+            return res.status(401).json({error : 'Not logged IN'})
+        }
+        let instInfo = jwt.verify(accessToken , process.env.ACCESS_TOKEN_SECRET);
+        if(!instInfo){
+            return res.status(403).json({error : 'Unauthorized Access'})
+        }
+        console.log(userInfo)
+        const instructor = await Instructor.findById(instInfo._id).populate('courses');
+        res.status(200).json(instructor.courses)
+    } catch(error){
+        res.status(500).json({ error: "An error occurred during insertion." });
+
+    }
+}
+module.exports.oneCourse = async(req , res)=>{
+    try{
+        let accessToken = req.cookies.accessToken;
+        if(!accessToken){
+            return res.status(401).json({error : 'Not logged IN'})
+        }
+        let instInfo = jwt.verify(accessToken , process.env.ACCESS_TOKEN_SECRET);
+        if(!instInfo){
+            return res.status(403).json({error : 'Unauthorized Access'})
+        }
+        console.log(userInfo)
+        let {id} = req.params
+        const oneCourse = await Course.findById(id).populate('videos').populate('enrolledStudents');
+        res.status(200).json(oneCourse)
+    } catch(error){
+        res.status(500).json({ error: "An error occurred during insertion." });
+
+    }
+}
