@@ -96,3 +96,9 @@ module.exports.enrolled = async(req , res)=>{
 
 
 }
+
+
+
+module.exports.allCourses = async(req , res)=>{
+    
+}
