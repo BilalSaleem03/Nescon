@@ -15,6 +15,15 @@ const storage = new CloudinaryStorage({
     },
 });
 
+const videoStorage = new CloudinaryStorage({
+    cloudinary : cloudinary,
+    params: {
+      folder: 'LMS',
+      resource_type: 'video', // ✅ Important!
+      allowed_formats: ['mp4', 'mov', 'avi']
+    }
+  });
+
 module.exports = {
-    cloudinary , storage
+    cloudinary , storage , videoStorage
 }

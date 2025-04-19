@@ -1,16 +1,19 @@
 const express = require("express");
 const route = express.Router();
 const multer = require("multer")
-const {storage} = require("../middleware/cloudanaryConfig.js")
+const {storage , videoStorage} = require("../middleware/cloudanaryConfig.js")
 const upload = multer({ storage });
+const uploadVid = multer({videoStorage })
 
 
 const instructorController = require('../controllers/Instructor.js')
 
 
 
-route.get("/add-course/:id" , upload.single("coverImage") , instructorController.addCourse)
-route.get("/signup"  , instructorController.signup)
+route.post("/add-course/:id" , upload.single("coverImage") , instructorController.addCourse)
+route.post("/signup"  , instructorController.signup)
+route.post("/add-course-video/:course_id" , uploadVid.single("video") , instructorController.addVideoToCourse)
+
 
 
 
