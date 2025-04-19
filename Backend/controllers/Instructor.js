@@ -45,7 +45,8 @@ module.exports.addCourse = async (req , res)=>{
     let info = req.body;
     let imageURL = req.file.path;
     let imageFileName = req.file.filename;
-    let {ins_id} = req.params
+    let instInfo = jwt.verify(accessToken , process.env.ACCESS_TOKEN_SECRET);
+    // let {ins_id} = req.params
     try {
         let ack = await Course.create({
             coverImage: {
@@ -57,7 +58,7 @@ module.exports.addCourse = async (req , res)=>{
             enrolledStudents:[],
             videos:[],
         });
-        let ins = await Instructor.findById(ins_id);
+        let ins = await Instructor.findById(instInfo._id);
         ins.cources.push(ack._id);
         await ins.save();
     } catch (error) {

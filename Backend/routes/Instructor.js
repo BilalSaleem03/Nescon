@@ -10,7 +10,7 @@ const instructorController = require('../controllers/Instructor.js')
 
 
 
-route.post("/add-course/:id" , upload.single("coverImage") , instructorController.addCourse)
+route.post("/add-course" , upload.single("coverImage") , instructorController.addCourse)
 route.post("/signup"  , instructorController.signup)
 route.post("/add-course-video/:course_id" , uploadVid.single("video") , instructorController.addVideoToCourse)
 

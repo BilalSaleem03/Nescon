@@ -9,7 +9,7 @@ route.post("/signup" , studentController.signup)
 route.get("/courses" , studentController.courses)
 route.get("/onecourse" , studentController.oneCourse)
 route.get("/enrolled/:cu-id" , studentController.enrolled)
-// route.get("/all-courses" , studentController.allCourses)
+route.get("/all-courses" , studentController.allCourses)
 
 
 
