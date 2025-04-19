@@ -94,11 +94,14 @@ module.exports.enrolled = async(req , res)=>{
         res.status(500).json({error: "Something went wrong!!!"})
     }
 
-
 }
 
 
 
-module.exports.allCourses = async(req , res)=>{
-    
-}
+
+
+// module.exports.allCourses = async(req , res)=>{
+//     try{
+//         let alldata = await Course
+//     }
+// }
